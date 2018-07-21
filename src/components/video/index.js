@@ -29,7 +29,9 @@ export default class Video extends React.Component {
 
     return (
       <Grid className="video" {...{ size, margin }}>
-        <video ref={this.videoRef} src={src} />
+        <video ref={this.videoRef}>
+          <source src={src} type="video/mp4" />
+        </video>
       </Grid>
     );
   }
