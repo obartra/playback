@@ -1,0 +1,16 @@
+{
+  "name": "text-slider",
+  "static": {
+    "headers": [
+      {
+        "source": "**/*.mp4",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "video/mp4"
+          }
+        ]
+      }
+    ]
+  }
+}
