@@ -4,6 +4,7 @@
   "description": "",
   "keywords": [],
   "main": "src/index.js",
+  "homepage": "https://obartra.github.io/playback",
   "dependencies": {
     "gymnast": "1.3.2",
     "lodash": "4.17.10",
