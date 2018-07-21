@@ -4,6 +4,8 @@ This is test site demoing `google.cloud.speech` API to render transcript text as
 
 ![](./sample.gif)
 
+[Live Demo](https://obartra.github.io/playback)
+
 ## Running the demo
 
 ```sh
@@ -16,5 +18,3 @@ yarn start
 ```sh
 yarn build
 ```
-
-You can view the output of `yarn build` with `yarn serve`.
