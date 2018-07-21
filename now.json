@@ -6,10 +6,6 @@
         "source": "**/*.mp4",
         "headers": [
           {
-            "key": "Cache-Control",
-            "value": "max-age=7200"
-          },
-          {
             "key": "Content-Type",
             "value": "video/mp4"
           }
