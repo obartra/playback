@@ -1,0 +1,9 @@
+.button {
+  outline: 1px solid black;
+  cursor: pointer;
+  text-align: center;
+}
+
+.button:hover {
+  background-color: lightpink;
+}

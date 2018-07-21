@@ -1,0 +1,18 @@
+.word {
+  position: relative;
+  padding: 0 2px;
+}
+
+.word .active,
+.word .invisible {
+  font-weight: bold;
+}
+
+.word .invisible {
+  color: transparent;
+}
+
+.word .overlap {
+  position: absolute;
+  left: 0;
+}
