@@ -64,7 +64,7 @@ class App extends React.Component {
               playing={playing}
               value={value}
               totalTime={totalTime}
-              src="/Kip_Kinkel_Interview.mp4"
+              src="Kip_Kinkel_Interview.mp4"
             />
             <Slider
               value={value}
