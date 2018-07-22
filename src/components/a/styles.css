@@ -1,0 +1,22 @@
+.a,
+.a:visited {
+  outline: 1px solid black;
+  color: black;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.a:hover,
+.a:active {
+  background-color: lightpink;
+}
+
+/**
+ * Custom styles for the instance. If this was a real styleguide we would
+ * figure out a proper solution instead
+ */
+.a {
+  position: relative;
+  left: -1px;
+}

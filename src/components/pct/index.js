@@ -4,7 +4,7 @@ import { asGrid } from "gymnast";
 const H3 = asGrid("h3");
 
 export default function Pct({ value, totalTime }) {
-  const pct = parseInt(value * 100, 10);
+  const pct = Math.max(0, parseInt(value * 100, 10));
   const currentTime = parseInt(value * totalTime, 10);
 
   return (

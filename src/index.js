@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Root, Layout, Grid } from "gymnast";
-import { Slider, SliderText, Pct, Button, Video } from "./components";
+import { A, Slider, SliderText, Pct, Button, Video } from "./components";
 import text from "./text.json";
 
 import "./styles.css";
@@ -18,29 +18,37 @@ class App extends React.Component {
 
     this.state = {
       value: 0,
-      playing: false,
+      shouldPlay: false,
+      actualPlay: false,
       totalTime,
       transcriptOffset: transcriptOffsetTime / totalTime
     };
   }
 
   onChange = value => {
-    this.setState({ value, playing: false });
+    this.setState({ value, shouldPlay: false });
   };
 
   onPlay = () => {
-    clearInterval(this.interval);
-    this.interval = setInterval(() => {
-      this.setState(({ value, totalTime }) => ({
-        value: value + updateRate / 1000 / totalTime,
-        playing: true
-      }));
-    }, updateRate);
+    this.setState({ shouldPlay: true });
   };
 
   onPause = () => {
-    clearInterval(this.interval);
-    this.setState({ playing: false });
+    this.setState({ shouldPlay: false });
+  };
+
+  onVideoChange = actualPlay => {
+    this.setState({ actualPlay, shouldPlay: actualPlay }, () => {
+      clearInterval(this.interval);
+
+      if (actualPlay) {
+        this.interval = setInterval(() => {
+          this.setState(({ value, totalTime }) => ({
+            value: value + updateRate / 1000 / totalTime
+          }));
+        }, updateRate);
+      }
+    });
   };
 
   componentWillUnmount() {
@@ -48,23 +56,37 @@ class App extends React.Component {
   }
 
   render() {
-    const { value, playing, totalTime, transcriptOffset } = this.state;
+    const {
+      value,
+      actualPlay,
+      shouldPlay,
+      totalTime,
+      transcriptOffset
+    } = this.state;
 
     return (
       <Layout height="parent">
         <Root>
-          <Grid margin="L L/2">
+          <Grid margin="L">
             <Button
               onPlay={this.onPlay}
               onPause={this.onPause}
-              playing={playing}
+              playing={shouldPlay}
             />
+            <A
+              margin="L/2"
+              size="fit"
+              href="https://github.com/obartra/playback"
+            >
+              View On Github
+            </A>
             <Pct value={value} totalTime={totalTime} />
             <Video
-              playing={playing}
+              shouldPlay={shouldPlay}
+              actualPlay={actualPlay}
               value={value}
               totalTime={totalTime}
-              src="./playback/Kip_Kinkel_Interview.mp4"
+              onVideoChange={this.onVideoChange}
             />
             <Slider
               value={value}

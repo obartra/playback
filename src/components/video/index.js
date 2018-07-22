@@ -1,37 +1,57 @@
 import * as React from "react";
 import { Grid } from "gymnast";
+import YouTube from "react-youtube";
 import "./styles.css";
 
 export default class Video extends React.Component {
-  constructor(props) {
-    super(props);
-    this.videoRef = React.createRef();
-  }
+  videoRef = null;
 
-  componentDidUpdate({ playing, value, totalTime }) {
-    if (this.props.playing === playing) {
+  componentDidUpdate({ shouldPlay, value, totalTime }) {
+    if (shouldPlay === this.props.shouldPlay) {
       return;
     }
 
-    if (value !== this.props.value) {
-      this.videoRef.current.currentTime = value * totalTime;
-    }
-
-    if (playing) {
-      this.videoRef.current.pause();
+    if (shouldPlay) {
+      this.videoRef.pauseVideo();
     } else {
-      this.videoRef.current.play();
+      const allowSeekAhead = true;
+      this.videoRef.seekTo(parseInt(value * totalTime, 10), allowSeekAhead);
+      this.videoRef.playVideo();
     }
   }
 
+  onReady = event => {
+    this.videoRef = event.target;
+    this.videoRef.playVideo();
+  };
+
+  onStateChange = ({ data }) => {
+    const { PLAYING, PAUSED } = YouTube.PlayerState;
+    if (data === PLAYING) {
+      this.props.onVideoChange(true);
+    } else if (data === PAUSED) {
+      this.props.onVideoChange(false);
+    }
+  };
+
   render() {
-    const { size, margin, src } = this.props;
+    const { size, margin } = this.props;
+    const opts = {
+      height: 200,
+      playerVars: {
+        controls: 0,
+        autoplay: 1
+      }
+    };
 
     return (
       <Grid className="video" {...{ size, margin }}>
-        <video ref={this.videoRef}>
-          <source src={src} type="video/mp4" />
-        </video>
+        <YouTube
+          videoId="U9oy5yl5JvM"
+          opts={opts}
+          onReady={this.onReady}
+          onStateChange={this.onStateChange}
+        />
       </Grid>
     );
   }

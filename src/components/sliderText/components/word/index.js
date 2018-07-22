@@ -21,11 +21,10 @@ export default function Word({
     <Span
       {...props}
       size="fit"
-      className="word"
+      className={`word ${active ? "active" : ""}`}
       onClick={() => onChange(startTime)}
     >
-      <div className="invisible">{text}</div>
-      <div className={`overlap ${active ? "active" : ""}`}>{text}</div>
+      {text}
     </Span>
   );
 }

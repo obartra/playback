@@ -16,7 +16,7 @@ export default function SliderText({
   const groupedSentences = getGroupedSentences(text, totalTime);
 
   return (
-    <Grid className="sliderText" margin="L 0" padding="0 L">
+    <Grid className="sliderText" margin="M 0" padding="0 M">
       {groupedSentences.map((sentences, minute) => {
         const active =
           relativeTime >= first(first(sentences)).startTime &&

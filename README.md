@@ -18,3 +18,5 @@ yarn start
 ```sh
 yarn build
 ```
+
+This will create the `/docs` folder which is used by github pages to serve the page

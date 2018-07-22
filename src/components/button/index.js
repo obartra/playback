@@ -7,7 +7,7 @@ export default function Button({ onPlay, onPause, playing }) {
     <Grid
       align="center"
       className="button"
-      padding="S"
+      padding="S M"
       role="button"
       size="fit"
       onClick={() => (playing ? onPause() : onPlay())}
