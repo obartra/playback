@@ -38,6 +38,7 @@ export default class Video extends React.Component {
     const { size, margin } = this.props;
     const opts = {
       height: 200,
+      width: 356,
       playerVars: {
         controls: 0,
         autoplay: 1

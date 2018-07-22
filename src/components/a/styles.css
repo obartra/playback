@@ -11,12 +11,3 @@
 .a:active {
   background-color: lightpink;
 }
-
-/**
- * Custom styles for the instance. If this was a real styleguide we would
- * figure out a proper solution instead
- */
-.a {
-  position: relative;
-  left: -1px;
-}

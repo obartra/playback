@@ -1,0 +1,26 @@
+.input input {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  padding: 6px 0 0 0;
+  margin: 0;
+  border: 0;
+}
+
+.input input:focus {
+  outline: none;
+}
+
+.input label {
+  position: absolute;
+  color: gray;
+  top: 4px;
+  z-index: 2;
+  font-size: 12px;
+}
+
+.input {
+  position: relative;
+  outline: 1px solid black;
+}

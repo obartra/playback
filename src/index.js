@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Root, Layout, Grid } from "gymnast";
-import { A, Slider, SliderText, Pct, Button, Video } from "./components";
+import { Root, Layout, Grid, Offset } from "gymnast";
+import { A, Slider, Input, SliderText, Pct, Button, Video } from "./components";
 import text from "./text.json";
 
 import "./styles.css";
 import { getTotalTime } from "./index.logic";
 
 const updateRate = 200;
-const transcriptOffsetTime = 10;
+const defaultTranscriptOffset = 10.3;
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class App extends React.Component {
       shouldPlay: false,
       actualPlay: false,
       totalTime,
-      transcriptOffset: transcriptOffsetTime / totalTime
+      transcriptOffset: defaultTranscriptOffset
     };
   }
 
@@ -51,6 +51,10 @@ class App extends React.Component {
     });
   };
 
+  setOffset = ({ target }) => {
+    this.setState({ transcriptOffset: parseFloat(target.value) });
+  };
+
   componentWillUnmount() {
     clearInterval(this.interval);
   }
@@ -73,9 +77,21 @@ class App extends React.Component {
               onPause={this.onPause}
               playing={shouldPlay}
             />
+            <Input
+              size="3"
+              type="number"
+              min="-20"
+              max="20"
+              step="0.3"
+              value={transcriptOffset}
+              onChange={this.setOffset}
+              label="Text Offset"
+            />
+            <Offset size="auto" />
             <A
               margin="L/2"
               size="fit"
+              target="_blank"
               href="https://github.com/obartra/playback"
             >
               View On Github
@@ -98,7 +114,7 @@ class App extends React.Component {
               value={value}
               totalTime={totalTime}
               text={text}
-              offset={transcriptOffset}
+              offset={transcriptOffset / totalTime}
               onChange={this.onChange}
             />
           </Grid>

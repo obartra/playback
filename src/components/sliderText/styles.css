@@ -1,5 +1,6 @@
 .sliderText {
-  max-height: 400px;
+  position: relative;
+  max-height: 300px;
   overflow-y: auto;
   outline: 1px solid black;
 }
